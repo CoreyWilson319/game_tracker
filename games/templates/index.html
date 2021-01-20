@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Games Index</h1>
+{% for game in games %}
+<h3>{{ game.title }}</h1>
+{{ game.image }}
+<p>Description: {{ game.description }}</p>
+<p>Platforms: {{ game.platforms }}</p>
+
+{% endfor %}
+{% endblock %}
