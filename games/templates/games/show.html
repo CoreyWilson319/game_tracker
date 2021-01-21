@@ -1,0 +1,9 @@
+<div class="card-content">
+    <span class="card-title">{{ game.title }}</span>
+    <p>Title: {{ game.platforms }}</p>
+    <p>Description: {{ game.description }}</p>
+
+    <!-- Add links for update and delete here... -->
+    <a href="{% url 'games_update' game.id %}">Update Details</a> | 
+    <a href="{% url 'games_delete' game.id %}">DELETE This Game</a>
+</div>
