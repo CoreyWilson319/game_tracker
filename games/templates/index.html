@@ -3,8 +3,9 @@
 <h1>Games Index</h1>
 <a href="{% url 'add_game' %}">Add Game</a>
 {% for game in games %}
-<a href="/{{ game.id }}"
-<h3>{{ game.title }}</h1>
+<a href="/games/{{ game.id }}">
+    <h3>{{ game.title }}</h3>
+</a>
 {{ game.image }}
 <p>Description: {{ game.description }}</p>
 <p>Platforms: {{ game.platforms }}</p>

@@ -13,4 +13,4 @@ class Game(models.Model):
     users = models.ManyToManyField(User)
 
     def __str__(self):
-        return self.title, self.image, self.description, self.platforms, self.users
+        return self.title, self.image, self.description, self.platforms

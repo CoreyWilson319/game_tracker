@@ -3,7 +3,7 @@
 {% block content %}
   <h1>Delete Game</h1>
 
-  <p>Are you sure you want to delete this game: {{ game }}?</p>
+  <p>Are you sure you want to delete this Game: {{ game.title }}?</p>
 
   <form action="" method="POST">
     {% csrf_token %}
