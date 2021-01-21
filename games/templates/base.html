@@ -7,6 +7,17 @@
     <title>Game Tracker</title>
 </head>
 <body>
+    <header>
+        {% if user.is_authenticated %}
+        <span><a href="{% url 'profile' user.username %}">Hello, {{ user.username }}!</a></span>
+        <span> | </span>
+        <span><a href="{% url 'logout' %}">Logout</a></span>
+        <span> | </span>
+        {% else %}
+        <span><a href="{% url 'login' %}">Login</a></span>
+        <span> | </span>
+        <span><a href="{% url 'signup' %}">SignUp</a></span>
+        {% endif %}
     <a href="/">Home</a>
     <a href="/games">Games</a>
     <h1>Game Tracker</h1>

@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 # Create your models here.
 class Game(models.Model):
@@ -9,6 +10,7 @@ class Game(models.Model):
     image = models.CharField(max_length=100)
     release_date = models.CharField(max_length=20)
     url = models.CharField(max_length=50)
+    users = models.ManyToManyField(User)
 
     def __str__(self):
-        return self.title, self.image, self.description, self.platforms
+        return self.title, self.image, self.description, self.platforms, self.users
