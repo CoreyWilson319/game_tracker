@@ -4,6 +4,7 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.models import User
 from .forms import GameForm
 from .models import Game
 import requests
@@ -99,7 +100,7 @@ def signup_view(request):
             user = form.save()
             print(user)
             login(request, user)
-            return HttpResponseRedirect('/user/' + str(user))
+            return HttpResponseRedirect('games/user/' + str(user))
         else:
             print('not valid..........................................')
             form = UserCreationForm()
@@ -111,5 +112,5 @@ def signup_view(request):
 
 def profile(request, username):
     user = User.objects.get(username=username)
-    games = Game.objects.filter(user=user)
+    games = Game.objects.filter(users=user)
     return render(request, 'profile.html', {'username': username, 'games': games})

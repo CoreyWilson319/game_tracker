@@ -5,9 +5,9 @@
 
 <h1>{{ username }}'s collection:</h1>
 
-{% for cat in cats %}
-<a href="/cats/{{ cat.id }}">
-  <h3>{{ cat.name }}</h3>
+{% for game in games %}
+<a href="/games/{{ game.id }}">
+  <h3>{{ game.title }}</h3>
 </a>
 
 {% endfor %}
