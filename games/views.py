@@ -100,7 +100,7 @@ def signup_view(request):
             user = form.save()
             print(user)
             login(request, user)
-            return HttpResponseRedirect('games/user/' + str(user))
+            return HttpResponseRedirect('/games/user/' + str(user))
         else:
             print('not valid..........................................')
             form = UserCreationForm()

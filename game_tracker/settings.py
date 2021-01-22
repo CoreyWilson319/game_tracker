@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'games.apps.GamesConfig',
+    'django_extensions'
 ]
 
 MIDDLEWARE = [
@@ -67,6 +68,8 @@ TEMPLATES = [
         },
     },
 ]
+
+# AUTH_USER_MODEL = 'games.Custom_User'
 
 WSGI_APPLICATION = 'game_tracker.wsgi.application'
 
