@@ -6,7 +6,7 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from .forms import GameForm
-from .models import Game
+from .models import Game, Note
 import requests
 
 # Create your views here.
@@ -78,7 +78,7 @@ def login_view(request):
             if user is not None:
                 if user.is_active:
                     login(request, user)
-                    return HttpResponseRedirect('/user/'+u)
+                    return HttpResponseRedirect('/games/user/'+u)
                 else:
                     print('The account has been disabled.')
             else:
@@ -114,3 +114,9 @@ def profile(request, username):
     user = User.objects.get(username=username)
     games = Game.objects.filter(users=user)
     return render(request, 'profile.html', {'username': username, 'games': games})
+
+## Notes ##
+class NoteCreate(CreateView):
+  model = Note
+  fields = '__all__'
+  success_url = '/games'
