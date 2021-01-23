@@ -9,7 +9,7 @@ class Note(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     content = models.TextField()
-    game_title = models.CharField(max_length=20, unique=True)
+    game_title = models.CharField(max_length=20, unique=True) # Try using the ForeignKey Relationship
 
     def __str__(self):
         return self.user, self.created_at, self.content, self.game_title
@@ -23,16 +23,15 @@ class Game(models.Model):
     image = models.CharField(max_length=100)
     release_date = models.CharField(max_length=20)
     url = models.CharField(max_length=50)
-    users = models.ManyToManyField(User)
-    notes = models.ManyToManyField(Note)
+    users = models.ManyToManyField(User) # use this for favorites if a user has it in theirs should be able to access from here
 
     def __str__(self):
-        return self.title, self.image, self.description, self.platforms, self.notes
+        return self.title, self.image, self.description, self.platforms
 
 
-class Profile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-    favorites = models.ManyToManyField(Game)
+# class Profile(models.Model):
+#     user = models.OneToOneField(User, on_delete=models.CASCADE)
+#     favorites = models.ManyToManyField(Game)
 # Notes
 # Notes have users
 # Notes could take game information based on if the Game has a user of the current user

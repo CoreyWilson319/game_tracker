@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect, HttpRequest
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.forms import AuthenticationForm
@@ -25,7 +25,35 @@ def index(request):
 
 def game_details(request, game_id):
     game = Game.objects.get(id=game_id)
+    if request.user.is_authenticated:
+        username = request.user.username
+
+    # print(username)
+        def add_to_favorite(username): #LEFT OFF HERE
+            game.users.set(username)
+            game.save()
+
+        add_to_favorite(username)
+        # user = User.objects.get(id=request.user.id)
+        # print('user', user)
+        # pass
+
+    add_to_favorite(username)
+
     return render(request, 'games/show.html', {'game': game})
+
+def Add_to_favorite(request, pk):
+    pass
+#     username = None
+#     if request.user.is_authenticated:
+#         username = request.user.username
+
+#     print(username)
+#     return render(request, 'games/favorite_form.html', {'username':username})
+
+# class NoteCreate(CreateView):
+#     model = 
+    
 
 
 def add_game(request):
@@ -120,3 +148,4 @@ class NoteCreate(CreateView):
   model = Note
   fields = '__all__'
   success_url = '/games'
+  
