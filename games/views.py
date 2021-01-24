@@ -25,15 +25,17 @@ def index(request):
 
 def game_details(request, game_id):
     game = Game.objects.get(id=game_id)
+    print(game_id)
     if request.user.is_authenticated:
         username = request.user.username
 
-    # print(username)
+        print(username)
         def add_to_favorite(username): #LEFT OFF HERE
-            game.users.set(username)
+            game.users.set(username) # IS error coming from here? should this be user ID?
             game.save()
 
         add_to_favorite(username)
+        # ERROR IS GRABBING FIRST CHARACTER OF USERNAME
         # user = User.objects.get(id=request.user.id)
         # print('user', user)
         # pass

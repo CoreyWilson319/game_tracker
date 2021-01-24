@@ -12,7 +12,9 @@ class Note(models.Model):
     game_title = models.CharField(max_length=20, unique=True) # Try using the ForeignKey Relationship
 
     def __str__(self):
-        return self.user, self.created_at, self.content, self.game_title
+        
+        return '{} {} {} {}'.format(self.user, self.created_at, self.content, self.game_title)
+        # return self.user, self.created_at, self.content, self.game_title
 
 
 class Game(models.Model):
@@ -26,7 +28,7 @@ class Game(models.Model):
     users = models.ManyToManyField(User) # use this for favorites if a user has it in theirs should be able to access from here
 
     def __str__(self):
-        return self.title, self.image, self.description, self.platforms
+        return '{} {} {} {} {} {} {} {}'.format(self.title, self.description, self.guid, self.platforms, self.image, self.release_date, self.url, self.users)
 
 
 # class Profile(models.Model):
