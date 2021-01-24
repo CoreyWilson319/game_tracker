@@ -25,22 +25,16 @@ def index(request):
 
 def game_details(request, game_id):
     game = Game.objects.get(id=game_id)
-    print(game_id)
+    # print(game_id)
     if request.user.is_authenticated:
-        username = request.user.username
+        current_user = request.user
 
-        print(username)
         def add_to_favorite(username): #LEFT OFF HERE
-            game.users.set(username) # IS error coming from here? should this be user ID?
+            game.users.add(str(current_user.id)) # IS error coming from here? should this be user ID?
             game.save()
 
-        add_to_favorite(username)
-        # ERROR IS GRABBING FIRST CHARACTER OF USERNAME
-        # user = User.objects.get(id=request.user.id)
-        # print('user', user)
-        # pass
+        add_to_favorite(current_user) # Need to wrap this function call inside a button click
 
-    add_to_favorite(username)
 
     return render(request, 'games/show.html', {'game': game})
 
