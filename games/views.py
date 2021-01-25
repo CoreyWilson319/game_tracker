@@ -29,14 +29,16 @@ def game_details(request, game_id):
     if request.user.is_authenticated:
         current_user = request.user
 
-        def add_to_favorite(username): #LEFT OFF HERE
-            game.users.add(str(current_user.id)) # IS error coming from here? should this be user ID?
+        def add_to_favorite(username):  # LEFT OFF HERE
+            # IS error coming from here? should this be user ID?
+            game.users.add(str(current_user.id))
             game.save()
 
-        add_to_favorite(current_user) # Need to wrap this function call inside a button click
-
+        # Need to wrap this function call inside a button click
+        add_to_favorite(current_user)
 
     return render(request, 'games/show.html', {'game': game})
+
 
 def Add_to_favorite(request, pk):
     pass
@@ -48,8 +50,7 @@ def Add_to_favorite(request, pk):
 #     return render(request, 'games/favorite_form.html', {'username':username})
 
 # class NoteCreate(CreateView):
-#     model = 
-    
+#     model =
 
 
 def add_game(request):
@@ -70,13 +71,11 @@ class GameUpdate(UpdateView):
     model = Game
     fields = ['title', 'platforms', 'description']
 
-
     def form_valid(self, form):
         print(self)
         self.object = form.save(commit=False)
         self.object.save()
         return HttpResponseRedirect('/games')
-    
 
 
 class GameDelete(DeleteView):
@@ -137,23 +136,44 @@ def signup_view(request):
 def profile(request, username):
     user = User.objects.get(username=username)
     games = Game.objects.filter(users=user.id)
-    return render(request, 'profile.html', {'username': username, 'games': games, 'user':user})
+    return render(request, 'profile.html', {'username': username, 'games': games, 'user': user})
+
 
 def user_game_details(request, username, game_id):
     user = User.objects.get(username=username)
     game = Game.objects.get(id=game_id)
-    
-    return render(request, 'user_games.html', {'username': username, 'game':game, 'user':user})
-## Notes ##
-class NoteCreate(CreateView):
-  model = Note
-  fields = ['content']
-  def form_valid(self, form):
-      note_game_id = Game.objects.get(game_id = game_id)
-    #   game_title = Game.objects.get(title = game_id)
-      form.instance.game_id = note_game_id
-      form.instance.user = self.request.user
-      return super(NoteCreate, self).form_valid(form)
 
-  success_url = '/games'
-  
+    return render(request, 'user_games.html', {'username': username, 'game': game, 'user': user})
+## Notes ##
+
+
+class NoteCreate(CreateView):
+    model = Note
+    fields = ['content']
+    success_url = '/games'
+
+    def get_context_data(self, **kwargs):
+        context = super(NoteCreate, self).get_context_data(**kwargs)
+        context['game_id']= self.kwargs['game_id']
+        game_id = context['game_id']
+        print(game_id)
+        return context
+
+
+    def form_valid(self, form):
+        # print("USER", self.request.user)
+        # print("REQUEST", self.request)
+        # print("hello", type(self.request))
+        test = str(self.request)
+        game_id = int(test.split('/')[2])
+        print('game', game_id)
+        # print("test", test)
+        # print(type(test))
+        # print("ID", self.request.id)
+        game = Game.objects.get(id=game_id)
+        self.Note = form.save(commit=False)
+        self.Note.user = self.request.user
+        self.Note.game_id = Game.objects.get(id=game_id)
+        self.Note.save()
+        return super().form_valid(form)
+
