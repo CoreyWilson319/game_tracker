@@ -136,9 +136,14 @@ def signup_view(request):
 
 def profile(request, username):
     user = User.objects.get(username=username)
-    games = Game.objects.filter(users=user)
-    return render(request, 'profile.html', {'username': username, 'games': games})
+    games = Game.objects.filter(users=user.id)
+    return render(request, 'profile.html', {'username': username, 'games': games, 'user':user})
 
+def user_game_details(request, username, game_id):
+    user = User.objects.get(username=username)
+    games = Game.objects.filter(users=user.id)
+    
+    return render(request, 'user_games.html', {'username': username, 'games':games, 'user':user})
 ## Notes ##
 class NoteCreate(CreateView):
   model = Note

@@ -14,5 +14,6 @@ urlpatterns = [
     path('<int:pk>/delete/', views.GameDelete.as_view(), name='games_delete'),
     path('<int:pk>/add/', views.Add_to_favorite, name = 'add_to_favorite'),
     path('user/<username>/', views.profile, name="profile"),
-    path('notes/create/', views.NoteCreate.as_view(), name='note_create')
+    path('notes/create/', views.NoteCreate.as_view(), name='note_create'),
+    path('<int:game_id>/<username>', views.user_game_details, name="user_game_details")
 ]
