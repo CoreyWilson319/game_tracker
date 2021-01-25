@@ -141,12 +141,19 @@ def profile(request, username):
 
 def user_game_details(request, username, game_id):
     user = User.objects.get(username=username)
-    games = Game.objects.filter(users=user.id)
+    game = Game.objects.get(id=game_id)
     
-    return render(request, 'user_games.html', {'username': username, 'games':games, 'user':user})
+    return render(request, 'user_games.html', {'username': username, 'game':game, 'user':user})
 ## Notes ##
 class NoteCreate(CreateView):
   model = Note
-  fields = '__all__'
+  fields = ['content']
+  def form_valid(self, form):
+      note_game_id = Game.objects.get(game_id = game_id)
+    #   game_title = Game.objects.get(title = game_id)
+      form.instance.game_id = note_game_id
+      form.instance.user = self.request.user
+      return super(NoteCreate, self).form_valid(form)
+
   success_url = '/games'
   
