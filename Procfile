@@ -1,1 +1,1 @@
-web: gunicorn game_tracker.wsgi --log-file -
+web: gunicorn gametrackersei.wsgi --log-file -
