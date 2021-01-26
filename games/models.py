@@ -24,12 +24,12 @@ class Note(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     content = models.TextField()
-    game_title = models.CharField(max_length=20, unique=True) # Try using the ForeignKey Relationship
-    game_id = models.ForeignKey(Game, on_delete=models.CASCADE)
+    # game_title = models.CharField(max_length=20, unique=True) # Try using the ForeignKey Relationship
+    game = models.ForeignKey(Game, on_delete=models.CASCADE)
 
     def __str__(self):
         
-        return '{} {} {} {} {}'.format(self.user, self.created_at, self.content, self.game_title, self.game_id)
+        return '{} {} {} {} {}'.format(self.user, self.created_at, self.content, self.game_title, self.game)
         # return self.user, self.created_at, self.content, self.game_title
 
 # class Profile(models.Model):

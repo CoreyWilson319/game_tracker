@@ -152,28 +152,21 @@ class NoteCreate(CreateView):
     fields = ['content']
     success_url = '/games'
 
-    def get_context_data(self, **kwargs):
-        context = super(NoteCreate, self).get_context_data(**kwargs)
-        context['game_id']= self.kwargs['game_id']
-        game_id = context['game_id']
-        print(game_id)
-        return context
+    # def get_context_data(self, **kwargs):
+    #     context = super(NoteCreate, self).get_context_data(**kwargs)
+    #     context['game_id']= self.kwargs['game_id']
+    #     game_id = context['game_id']
+    #     print(game_id)
+    #     return context
 
 
     def form_valid(self, form):
-        # print("USER", self.request.user)
-        # print("REQUEST", self.request)
-        # print("hello", type(self.request))
         test = str(self.request)
-        game_id = int(test.split('/')[2])
-        print('game', game_id)
-        # print("test", test)
-        # print(type(test))
-        # print("ID", self.request.id)
-        game = Game.objects.get(id=game_id)
-        self.Note = form.save(commit=False)
-        self.Note.user = self.request.user
-        self.Note.game_id = Game.objects.get(id=game_id)
-        self.Note.save()
-        return super().form_valid(form)
+        the_game_id = int(test.split('/')[2])
+        form.instance.user = self.request.user
+        form.instance.game_id = the_game_id
+        form.save()
+
+
+        return super(NoteCreate, self).form_valid(form)
 
