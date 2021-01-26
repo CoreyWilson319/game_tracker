@@ -1,1 +1,1 @@
-gunicorn game_tracker.wsgi:application --preload --workers 1
+web: gunicorn game_tracker.wsgi --log-file -
