@@ -1,5 +1,14 @@
 # Others
 credentials.py
+
+*.log
+*.pot
+*.pyc
+__pycache__/
+local_settings.py
+db.sqlite3
+venv/
+
 # Byte-compiled / optimized / DLL files
 bin/
 include/
