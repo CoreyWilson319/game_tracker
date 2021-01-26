@@ -29,7 +29,7 @@ def game_details(request, game_id):
     return render(request, 'games/show.html', {'game': game})
 
 
-def add_to_playing(request, pk):
+def add_to_playing(request, pk, username):
     if request.user.is_authenticated:
         current_user = request.user
         game = Game.objects.get(id=pk)
@@ -39,6 +39,21 @@ def add_to_playing(request, pk):
     username = request.user.username
 
     return render(request, 'profile.html', {'game': game, 'username':username})
+    
+# COME BACK TO THIS
+# def remove_from_playing(request, pk, username):
+#     if request.user.is_authenticated:
+#         current_user = request.user
+#         game = Game.objects.get(id=pk)
+#         game.users.filter(current_user.id)
+#         print('FILTERED game user', game.users.filter(current_user.id))
+#         print(game)
+#         # game.users.add(str(current_user.id))
+#         game.save()
+
+#     username = request.user.username
+
+#     return render(request, 'profile.html', {'game': game, 'username':username})
 
 def add_game(request):
     context = {}

@@ -14,6 +14,7 @@ urlpatterns = [
     path('<int:pk>/update/', views.GameUpdate.as_view(), name='games_update'),
     path('<int:pk>/delete/', views.GameDelete.as_view(), name='games_delete'),
     path('<int:pk>/add/', views.add_to_playing, name = 'add_to_playing'),
+    # path('<int:pk>/remove/', views.remove_from_playing, name = 'remove_from_playing'),
     path('user/<username>/', views.profile, name="profile"),
     path('<int:game_id>/<username>/notes/create/', views.NoteCreate.as_view(), name='note_create'),
     path('<int:game_id>/<username>', views.user_game_details, name="user_game_details"),
