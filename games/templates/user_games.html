@@ -3,15 +3,17 @@
 
 {% block content %}
 
-<a href="{{username}}/notes/create">Create Some Notes for {{game.title}} ?</a>
+<div id="create_notes">
+    <a href="{{username}}/notes/create">Create Some Notes for {{game.title}} ?</a>
+</div>
 
-<h1>{{game.title}}</h1>
+<h1 id="game_title">{{game.title}}</h1>
+<!-- <ul> -->
 {% for note in notes %}
-<ul>
-    <li>{{note.content}}    <a href='{% url "note_delete" note.id  username %}'>Delete Note</a></li>
-</ul>
-<!-- Show Game Id -->
-<!-- Show Note matching that game id and users id -->
-<!-- Create note form around here -->
-{% endfor %}
+    <li id="indi_note">{{note.content}}    <a href='{% url "note_delete" note.id  username %}'>Delete Note</a></li>
+    <!-- Show Game Id -->
+    <!-- Show Note matching that game id and users id -->
+    <!-- Create note form around here -->
+    {% endfor %}
+<!-- </ul> -->
 {% endblock %}

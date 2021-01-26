@@ -29,7 +29,7 @@ def game_details(request, game_id):
     return render(request, 'games/show.html', {'game': game})
 
 
-def add_to_playing(request, pk, username):
+def add_to_playing(request, pk):
     if request.user.is_authenticated:
         current_user = request.user
         game = Game.objects.get(id=pk)

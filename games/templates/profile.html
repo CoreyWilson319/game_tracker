@@ -3,15 +3,22 @@
 
 {% block content %}
 
-<h1>{{ username }} Is Playing</h1>
+<h3 id="user_playlist">{{ username }} Is Playing</h1>
+  <hr>
+  <div id="all_notes">
+    <a href="/games/user/{{ username }}/notes">All {{ username }} Notes</a>
+  </div>
 <!-- <p>{{ user.id }}</p> -->
 
+<div class="content-box">
 {% for game in games %}
-<a href="/games/{{ game.id }}/{{ username }}">
-  <h3>{{ game.title }}</h3>
-</a>
-
-{% endfor %}
-<a href="/games/user/{{ username }}/notes">Notes</a>
+<div class="border-box">
+  <a href="/games/{{ game.id }}/{{ username }}">
+    <h4 id="game_title">{{ game.title }}</h3>
+    </a>
+</div>
+    
+    {% endfor %}
+  </div>
 
 {% endblock %}

@@ -1,8 +1,17 @@
 {% extends "base.html" %}
 {% block content %}
-<h1>Home</h1>
-<h3>About</h3>
-<h6>Enter</h6>
+<h1 id="home">Home</h1>
+<h3 id="about">About</h3>
+<div class="content-box">
+    <div class="border-box">
+        <p id="description">This application is for those who enjoy playing video games and want
+            a tool to help keep record of the games they are playing. It also allows users to take
+            notes about anything they wish to in regards to the games that they are playing.</p>
+    </div>
+    </div>
+<div id="enter">
+    <a href='/games'><h4>Click Here to Enter</h4></a>
+</div>
 <!-- Make enter take you to the /games route -->
 
 {% endblock %}
