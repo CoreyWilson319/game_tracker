@@ -6,8 +6,12 @@
 <a href="{{username}}/notes/create">Create Some Notes for {{game.title}} ?</a>
 
 <h1>{{game.title}}</h1>
+{% for note in notes %}
+<ul>
+    <li>{{note.content}}    <a>X</a></li>
+</ul>
 <!-- Show Game Id -->
 <!-- Show Note matching that game id and users id -->
 <!-- Create note form around here -->
-
+{% endfor %}
 {% endblock %}

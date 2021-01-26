@@ -142,8 +142,9 @@ def profile(request, username):
 def user_game_details(request, username, game_id):
     user = User.objects.get(username=username)
     game = Game.objects.get(id=game_id)
+    notes = Note.objects.filter(game_id = game_id, user = user.id)
 
-    return render(request, 'user_games.html', {'username': username, 'game': game, 'user': user})
+    return render(request, 'user_games.html', {'username': username, 'game': game, 'user': user, 'notes':notes})
 ## Notes ##
 
 
@@ -167,3 +168,21 @@ def notes_view(request, username):
     notes = Note.objects.filter(user_id = request.user.id)
     
     return render(request, 'user_notes.html', {'notes': notes})
+
+# class NoteUpdate(UpdateView):
+#     model = Note
+#     fields = ['content']
+
+#     def form_valid(self, form):
+#         print(self)
+#         self.object = form.save(commit=False)
+#         self.object.save()
+#         return HttpResponseRedirect('/games')
+
+
+class NoteDelete(DeleteView):
+    model = Note
+    success_url = '/games'
+
+
+# Need to create delete route for notes
