@@ -25,33 +25,20 @@ def index(request):
 
 def game_details(request, game_id):
     game = Game.objects.get(id=game_id)
-    # print(game_id)
-    if request.user.is_authenticated:
-        current_user = request.user
-
-        def add_to_favorite(username):  # LEFT OFF HERE
-            # IS error coming from here? should this be user ID?
-            game.users.add(str(current_user.id))
-            game.save()
-
-        # Need to wrap this function call inside a button click
-        add_to_favorite(current_user)
 
     return render(request, 'games/show.html', {'game': game})
 
 
-def Add_to_favorite(request, pk):
-    pass
-#     username = None
-#     if request.user.is_authenticated:
-#         username = request.user.username
+def add_to_playing(request, pk):
+    if request.user.is_authenticated:
+        current_user = request.user
+        game = Game.objects.get(id=pk)
+        game.users.add(str(current_user.id))
+        game.save()
 
-#     print(username)
-#     return render(request, 'games/favorite_form.html', {'username':username})
+    username = request.user.username
 
-# class NoteCreate(CreateView):
-#     model =
-
+    return render(request, 'profile.html', {'game': game, 'username':username})
 
 def add_game(request):
     context = {}
