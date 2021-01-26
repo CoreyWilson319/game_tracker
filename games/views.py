@@ -152,14 +152,6 @@ class NoteCreate(CreateView):
     fields = ['content']
     success_url = '/games'
 
-    # def get_context_data(self, **kwargs):
-    #     context = super(NoteCreate, self).get_context_data(**kwargs)
-    #     context['game_id']= self.kwargs['game_id']
-    #     game_id = context['game_id']
-    #     print(game_id)
-    #     return context
-
-
     def form_valid(self, form):
         test = str(self.request)
         the_game_id = int(test.split('/')[2])
@@ -170,3 +162,8 @@ class NoteCreate(CreateView):
 
         return super(NoteCreate, self).form_valid(form)
 
+def notes_view(request, username):
+    print(request.user.id)
+    notes = Note.objects.filter(user_id = request.user.id)
+    
+    return render(request, 'user_notes.html', {'notes': notes})

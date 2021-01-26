@@ -1,0 +1,7 @@
+{% extends "base.html" %}
+{% block content %}
+{% for note in notes %}
+    <h3>{{ note.game.title }}</h3>
+    <p>{{ note.content }}</p>
+{% endfor %}
+{% endblock %}
