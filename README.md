@@ -9,3 +9,4 @@ Django, Postgresql, Python
 
 ### Functionality
 User can have many games, Users can have 1 set of notes per game and should only be shown the latest, Only Users and Friends of that user can see their notes. All users can see what games a user is playing
+
