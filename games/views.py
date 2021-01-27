@@ -31,7 +31,7 @@ def game_details(request, game_id):
 
     return render(request, 'games/show.html', {'game': game})
 
-@method_decorator(login_required, name="dispatch")
+@login_required
 def add_to_playing(request, pk):
     if request.user.is_authenticated:
         current_user = request.user
@@ -57,7 +57,7 @@ def add_to_playing(request, pk):
 #     username = request.user.username
 
 #     return render(request, 'profile.html', {'game': game, 'username':username})
-@method_decorator(login_required, name="dispatch")
+@login_required
 def add_game(request):
     context = {}
 
@@ -71,7 +71,7 @@ def add_game(request):
     context['form'] = form
     return render(request, "add_games.html", context)
 
-@method_decorator(login_required, name="dispatch")
+@login_required
 class GameUpdate(UpdateView):
     model = Game
     fields = ['title', 'platforms', 'description']
@@ -82,7 +82,7 @@ class GameUpdate(UpdateView):
         self.object.save()
         return HttpResponseRedirect('/games')
 
-@method_decorator(login_required, name="dispatch")
+@login_required
 class GameDelete(DeleteView):
     model = Game
     success_url = '/games'
@@ -141,7 +141,7 @@ def profile(request, username):
     games = Game.objects.filter(users=user.id)
     return render(request, 'profile.html', {'username': username, 'games': games, 'user': user})
 
-@method_decorator(login_required, name="dispatch")
+@login_required
 def user_game_details(request, username, game_id):
     user = User.objects.get(username=username)
     game = Game.objects.get(id=game_id)
@@ -150,7 +150,7 @@ def user_game_details(request, username, game_id):
     return render(request, 'user_games.html', {'username': username, 'game': game, 'user': user, 'notes':notes})
 ## Notes ##
 
-@method_decorator(login_required, name="dispatch")
+@login_required
 class NoteCreate(CreateView):
     model = Note
     fields = ['content']
@@ -166,7 +166,7 @@ class NoteCreate(CreateView):
 
         return super(NoteCreate, self).form_valid(form)
 
-@method_decorator(login_required, name="dispatch")
+@login_required
 def notes_view(request, username):
     print(request.user.id)
     notes = Note.objects.filter(user_id = request.user.id)
@@ -183,7 +183,7 @@ def notes_view(request, username):
 #         self.object.save()
 #         return HttpResponseRedirect('/games')
 
-@method_decorator(login_required, name="dispatch")
+@login_required
 class NoteDelete(DeleteView):
     model = Note
     success_url = '/games'
