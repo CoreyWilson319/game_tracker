@@ -42,7 +42,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'corsheaders',
     'games.apps.GamesConfig',
-    'django_extensions',
     'whitenoise.runserver_nostatic',
     'django-heroku'
 ]
