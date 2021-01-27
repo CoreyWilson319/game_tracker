@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'games.apps.GamesConfig',
     'django_extensions',
     'whitenoise.runserver_nostatic',
+    'django-heroku'
 ]
 
 MIDDLEWARE = [
