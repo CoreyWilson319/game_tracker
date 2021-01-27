@@ -4,14 +4,14 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-dj-database-url = "==0.5.0"
-django-cors-headers = "==3.7.0"
-django-heroku = "==0.3.1"
-pipenv = "==2020.11.15"
-psycopg2 = "==2.8.6"
-psycopg2-binary = "==2.8.6"
-whitenoise = "==5.2.0"
-Django = "==3.1.5"
+dj-database-url = "*"
+django-cors-headers = "*"
+django-heroku = "*"
+pipenv = "*"
+psycopg2 = "*"
+psycopg2-binary = "*"
+whitenoise = "*"
+Django = "*"
 gunicorn = "*"
 requests = "*"
 
