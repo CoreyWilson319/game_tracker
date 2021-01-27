@@ -15,6 +15,8 @@ import django_heroku
 import os
 from pathlib import Path
 
+DJANGO_HOST = "production"
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -29,7 +31,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['0.0.0.0', 'localhost', '127.0.0.1', 'gametrackersei.herokuapp.com']
+ALLOWED_HOSTS = ['gametrackersei.herokuapp.com']
 
 
 # Application definition
@@ -44,13 +46,11 @@ INSTALLED_APPS = [
     'corsheaders',
     'games.apps.GamesConfig',
     'whitenoise.runserver_nostatic',
-    'django-heroku'
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
-    'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -66,7 +66,9 @@ ROOT_URLCONF = 'game_tracker.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            '/www/STORE/game_tracker/templates/',
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -136,7 +138,7 @@ USE_TZ = True
 
 
 
-STATIC_URL = '/static/'
+STATIC_URL = 'https://gametrackersei.herokuapp.com/'
 #location where django collect all static files
 STATIC_ROOT = os.path.join(BASE_DIR,'static')
 # location where you will store your static files
