@@ -9,8 +9,10 @@
     <h3 id="game_title">{{ game.title }}</h3>
 </a>
 {{ game.image }}
-<p>Description: {{ game.description }}</p>
-<p>Platforms: {{ game.platforms }}</p>
+<div id = "description">
+    <p>Description: {{ game.description }}</p>
+    <p>Platforms: {{ game.platforms }}</p>
+</div>
 
 {% endfor %}
 {% endblock %}
