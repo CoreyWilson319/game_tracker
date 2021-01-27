@@ -11,3 +11,5 @@ Django, Postgresql, Python
 Users can sign up to add games to a collection of games that all users can add to what they are playing, as well as removing that game from that collection. Users can have many games and many notes for a game. This project uses Django, Postgresql and Python. Users can see all of there notes that they have made for every game and they can also delete their the notes that they have left.
 
 
+### Deployment
+https://gametrackersei.herokuapp.com/
