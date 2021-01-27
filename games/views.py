@@ -71,7 +71,7 @@ def add_game(request):
     context['form'] = form
     return render(request, "add_games.html", context)
 
-@login_required
+@method_decorator(login_required, name="dispatch")
 class GameUpdate(UpdateView):
     model = Game
     fields = ['title', 'platforms', 'description']
@@ -82,7 +82,7 @@ class GameUpdate(UpdateView):
         self.object.save()
         return HttpResponseRedirect('/games')
 
-@login_required
+@method_decorator(login_required, name="dispatch")
 class GameDelete(DeleteView):
     model = Game
     success_url = '/games'
@@ -150,7 +150,7 @@ def user_game_details(request, username, game_id):
     return render(request, 'user_games.html', {'username': username, 'game': game, 'user': user, 'notes':notes})
 ## Notes ##
 
-@login_required
+@method_decorator(login_required, name="dispatch")
 class NoteCreate(CreateView):
     model = Note
     fields = ['content']
@@ -183,7 +183,7 @@ def notes_view(request, username):
 #         self.object.save()
 #         return HttpResponseRedirect('/games')
 
-@login_required
+@method_decorator(login_required, name="dispatch")
 class NoteDelete(DeleteView):
     model = Note
     success_url = '/games'
