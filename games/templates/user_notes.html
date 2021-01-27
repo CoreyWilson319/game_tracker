@@ -1,8 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
 {% for note in notes %}
-    <h3>{{ note.game.title }}</h3>
-    <p>{{ note.content }}</p>
-    <p>{{ note.id }}</p>
+    <h3 id="game_title">{{ note.game.title }}</h3>
+    <p id="description" >{{ note.content }}</p>
 {% endfor %}
 {% endblock %}
