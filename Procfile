@@ -1,1 +1,1 @@
-web: gunicorn gametrackersei.wsgi
+web: gunicorn game_tracker.wsgi
