@@ -20,7 +20,7 @@ import requests
 
 #     return HttpResponse(response)
 # Games
-@login_required
+
 def index(request):
     games = Game.objects.all()
     return render(request, 'index.html', {'games': games})
@@ -135,7 +135,7 @@ def signup_view(request):
         form = UserCreationForm()
         return render(request, 'signup.html', {'form': form})
 
-@method_decorator(login_required, name="dispatch")
+@login_required
 def profile(request, username):
     user = User.objects.get(username=username)
     games = Game.objects.filter(users=user.id)
